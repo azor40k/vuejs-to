@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="todos.css">
+</head>
+<body>
+  <div id="todos">
+    <section class="todoapp">
+      <header class="header">
+        <h1>Todos</h1>
+        <input type="text" class="new-todo" placeholder="Ajouter une tache" @keyup.enter="addEll" v-model="ajout" >
+      </header>
+      <div class="main">
+
+        <input type="checkbox" id="toggle-all" class="toggle-all">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list">
+
+          <li v-for="(tache, index) in taches"
+          class="todo" :class="tache.done ? '' : 'completed'">
+            <div class="view">
+              <input type="checkbox" class="toggle" @click="toggle(index)">
+              <label > {{tache.todo}}</label>
+              <button class="destroy" @click="supEll(index)"></button>
+            </div>  
+            <!-- <input type="text" class="edit"> -->
+          </li>
+
+        </ul>
+      </div>
+      <footer v-if="total>0" class="footer">
+        <span class="todo-count"><strong>{{total}}</strong> tâches à faire</span>
+        <ul class="filters">
+          <li><a href="#" class="selected">Toutes</a></li>
+          <li><a href="#" >À faire</a></li>
+          <li><a href="#" >Faites</a></li>
+        </ul>
+        <button v-if="tachedone" class="clear-completed" @click="supD">Clear accomplished</button>
+      </footer> 
+    </section>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <script src="todos.js"></script>
+</body>
+</html>
